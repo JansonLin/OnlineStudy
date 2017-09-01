@@ -1,0 +1,150 @@
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+}
+	.nav{
+		width:100%;
+		height:80px;
+		background-color:#000000;
+	}
+	.nav-as{
+		margin-left:80px;
+	}
+	.nav-as li{
+		list-style:none;
+		display:inline-block;
+		height:60px;
+		line-height:80px;
+		text-align:center;
+		vertical-align:middle;
+	}
+	.nav-as li a{
+		display:inline-block;
+		text-decoration:none;
+		margin-left:20px;
+		font-family:"STLiti";
+		font-size:30px;
+		color:#CCCCCC;
+	}
+	.nav-as li a:hover{
+		background-color:#FFFFFF;
+		opacity:0.5;
+		color:#000000;
+	}
+	.nav-cs,.nav-cs a{
+		list-style:none;
+		display:inline-block;
+		float:right;
+		margin-right:30px;
+		line-height:80px;
+	}
+	
+		.nav-cs{
+		margin-left:240px;
+		float:right;
+	
+	}
+	.txt{
+		margin-left:360px;
+		height:30px;
+		width:280px;
+		border-radius:10px;
+		}
+	#btn{
+		height:30px;
+		width:30px;
+		margin-left:-40px;
+		margin-bottom:-10px;
+	}
+	#btn:hover{
+		cursor:pointer;
+	}
+	#btn:hover input{ 
+		border:0;
+	}
+	
+	
+	.vid{
+		height:200px;
+		background-color:#666666;
+		opacity:0.7;
+	
+	}
+	.vid-play{
+		display:inline-block;
+		margin-left:60px;
+		margin-top:80px;
+	}
+	.vid-play h2{
+		color:#FFFFFF;
+	}
+	.vid-play span{
+		display:inline-block;
+		margin-top:15px;
+		height:60px;
+		line-height:60px;
+		width:180px;
+		text-align:center;
+		vertical-align:middle;
+		background-color:#FF0000;
+		font-family:"ËÎÌå";
+		font-size:24px;
+	}
+	.vid-play span:hover{
+		cursor:pointer;
+	}
+	.intr{
+		display:inline-block;
+		margin-top:20px;
+	
+		width:70%;
+	}
+	.intr span{
+	display:inline-block;
+	margin-left:60px;
+	}
+	.vio{
+		display:inline-block;
+		width:70%;
+		margin-top:20px;
+		margin-bottom:20px;
+		
+	}
+	.vio li{
+		display:inline-block;
+		list-style:none;
+		margin-top:20px;
+		margin-left:80px;
+		
+	}
+	.vio li a{
+		text-decoration:none;
+		color:#000000;
+		font-family:"ÐÂËÎÌå";
+		font-size:20px;
+	}
+	.vio li:hover{
+		cursor:pointer;
+	}
+	hr{
+		border:solid 1px;
+		width:60%;
+		margin-bottom:40px;
+	}
+	#con{
+	    top:20px;
+		margin-left:60px;
+		border:none;
+		height:1000px;
+      }
+	  .content_container{
+	  	overflow:auto;
+	  }
+
+#logo.logo{
+	float:left;
+	height:74px;
+	width:126px;
+	margin-left:10px;}

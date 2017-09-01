@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_6.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.web.jstl"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/711-19/Desktop/jspsmartupload.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/json.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/ueditor-1.1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/ueditor-1.1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/jsp/lib/json.jar"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/ueditor.all.js"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/ueditor.all.min.js"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/ueditor.config.js"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/ueditor.parse.js"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/ueditor.parse.min.js"/>
+	<classpathentry kind="lib" path="WebRoot/ueditor/zh-cn.js"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

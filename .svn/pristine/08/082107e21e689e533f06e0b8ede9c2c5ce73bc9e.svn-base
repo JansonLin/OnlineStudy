@@ -1,0 +1,97 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8 "%>
+<%@ page import="java.io.File"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>生成课程</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript">
+	function confirm()
+	{
+		window.alert("请在控制台输入课程的路径");
+    }
+</script>
+  </head>
+  
+  <body>
+	<!-- 生成课程 begin -->
+	<form action="servlet/CourseServlet" method="post">
+		<input type="hidden" name="op" value="create" >
+		<input type="submit" value="生成课程" name="createCourse"  onclick="confirm()">  
+	</form>
+	<!-- 生成课程 end -->
+	
+  	<!-- 选择类型 begin -->
+  	<%
+  		ArrayList direction = new ArrayList();
+  		direction.add("全部");
+  		direction.add("前端开发");
+  		direction.add("后端开发");
+  		direction.add("移动开发");
+  		direction.add("数据库");
+  		direction.add("云计算&大数据");
+  		direction.add("运维&测试");
+  		direction.add("UI设计");
+  		
+  		ArrayList type=new ArrayList();
+  		type.add("基础");
+  		type.add("案例");
+  		type.add("框架");
+  		type.add("工具");
+   %>
+	<p>请选择课程的类型</p>
+	<form action="servlet/CreateCourseServlet" method="post">
+		<input type="hidden" name="op" value="choose">
+		<h3>方向</h3>
+		<select name="direction">
+  			<%
+  				 for (int i = 0; i < direction.size(); i++) {  
+                        out.print("<option>" + direction.get(i) + "</option>");  
+                    }  
+  			 %>
+		</select>
+		<h3>分类</h3>
+		<select name="sort">
+  			<option value="">HTML/CSS</option>
+  			<option value="">后端开发</option>
+  			<option value="">javaScript</option>
+  			<option value="">数据库</option>
+  			<option value="">云计算&大数据</option>
+  			<option value="">运维&测试</option>
+  			<option value="">UI设计</option>
+		</select>
+		<h3>类型</h3>
+		<select name="type">
+  			<%
+  				 for (int i = 0; i < type.size(); i++) {  
+                        out.print("<option>" + type.get(i) + "</option>");  
+                    }  
+  			 %>
+		</select>
+		
+		<p>课程封面</p>
+		
+		<!-- 图片 -->
+		
+		<br /><br />
+		<input type="submit" value="确定" name="choose">  
+	</form>
+	<!-- 选择类型 end -->
+  </body>
+</html>

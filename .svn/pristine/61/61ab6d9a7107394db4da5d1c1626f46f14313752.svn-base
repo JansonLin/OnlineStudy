@@ -1,0 +1,68 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'PersonalInfo.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link href="css/personInfo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+</head>
+
+<body>
+<script type="text/javascript"  src="js/scrolltopcontrol.js"></script>
+<div class="nav">
+       <div id="logo" class="logo"><a href="导航.html" target="_self" title="首页"><img src="img/22.jpg"></a>
+       </div>
+
+		<ul class="nav-as">
+			<li><a href="课程.html">课程</a></li>
+			<li><a  href="年级.html">年级</a></li>
+			<li>
+			  <div class="sea">
+                 <input class="put" name="text" type="text" placeholder="search"/>
+                 <input type="button" value="搜索"/>		      
+			  </div>
+			</li>
+		 <div class="nav-cs"><a href="/" target="_self" title="个人主页"><img   src="img/jQ img/头像/1793_VDxq7AD8w7A444t44ads_square.jpg" height="50" width="50" style="border-radius:25px;"/></a></div>
+        </ul>
+  </div>
+<div id="main">
+  <p><h3 style="font-size:32px;">个人主页</h3></p>
+  <div id="bea">
+      <img class="img"  src="img/jQ img/头像/1793_VDxq7AD8w7A444t44ads_square.jpg" height="150" width="150" style="border-radius:80px;  margin-left:270px; margin-top:120px;"/>
+      <div></div>
+      </div>
+</div>
+<div id="left-frame">
+       <ul class="top">
+           <li><a href="个人信息.html" target="right">主页<span>&nbsp> </span> </a></li>
+           <li><a href="我的课程.html" target="right">课程<span>&nbsp> </span> </a></li>
+           <li><a href="笔记.html" target="right">笔记<span>&nbsp> </span> </a></li>
+           <div class="out">
+             <li><a  href="导航.html">退出登录</a></li>
+           </div>  
+       </ul>
+  </div>
+  <div id="right-frame">
+   <iframe width="80%" height="80%" class="container" frameborder="0" scrolling="no" name="right"  src="个人信息.html" ></iframe>
+   </div>
+ 
+
+</body>
+</html>
+	

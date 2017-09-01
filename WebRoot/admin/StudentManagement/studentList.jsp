@@ -1,0 +1,164 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="entity.Student"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<%
+	ArrayList<Student> student=(ArrayList<Student>)session.getAttribute("slist");
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>学生信息列表</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="css/studentList.css">
+
+<!-- 表格隔行变色，并且鼠标移入后显示高亮begin -->
+<script>
+	window.onload = function() {
+		var oTab = document.getElementById('table1');
+		var oldColor = '';
+		for (var i = 0; i < oTab.tBodies[0].rows.length; i++) {
+			oTab.tBodies[0].rows[i].onmouseover = function() {
+				oldColor = this.style.background;
+				this.style.background = '#CC9999';
+			};
+			oTab.tBodies[0].rows[i].onmouseout = function() {
+				this.style.background = oldColor; //鼠标移出后恢复原来颜色
+			};
+			if (i % 2) {
+				oTab.tBodies[0].rows[i].style.background = '#CCCC99';
+			} else {
+				oTab.style.background = '#CCFFCC';
+			}
+		}
+	};
+</script>
+<!-- 表格隔行变色，并且鼠标移入后显示高亮end -->
+
+</head>
+  
+  <body>
+  <!-- 多项选择搜索begin -->
+	<div class="nav"><span class="icon-font"></span><span>学生管理</span><span>&gt</span><span>学生列表</span></div>
+	
+	<div class="searchPanel">
+   		<select name="select" size="1" class="lab" id="sel" >
+   			<option value="1" selected="selected">按姓名查找</option>
+   			<option value="2">按系班查找</option>
+   			<option value="3">按学号查找</option>
+   		</select>
+   		
+   		<input type="text" name="search" id="search" class="inputEle inputSearch">
+   		<input type="button" value="查询" id="btnSearch" class="btn orange" Onclick="Search1()"/>
+   </div>
+  <!-- 多项选择搜索end -->
+  
+  <!-- 显示学生信息表begin -->
+	<table cellspacing="0" class="table1" id="table1">
+	<!-- 表头部分begin -->
+	<thead class="thead1">
+    	<tr><th class="th1"><input type="checkbox" name="first" id="sel" class="lab"/></th>
+	    	<th>ID</th>
+	    	<th>学号</th>
+	    	<th>姓名</th>
+	    	<th>性别</th>
+	    	<th>所在系</th>
+	    	<th>所在班级</th>
+	    	<th>电子邮件</th>
+	    	<th>个人介绍</th>
+	    	<th>照片所在路径</th>
+	    	<th>联系方式</th>
+	    	<th class="th2">操作</th>
+	    </tr>
+	    </thead>
+	    <!-- 表头部分end -->
+	    
+	    <!-- 表身显示信息部分begin -->
+		<%
+			if(null==student)
+				response.sendRedirect("../../servlet/StudentServlet?op=list");
+			else{
+				for(int i=0;i<student.size();i++){
+					Student s=student.get(i);
+		%>
+		<tbody class="tbody1">
+					<tr class="ele1">
+						<td class="td1"><input type="checkbox" name="first"/></td>
+						<td><%=s.getSID()%></td>
+						<td><%=s.getSStudentID()%></td>
+						<td><%=s.getSName() %></td>
+						<td><%=s.getSSex() %></td>
+						<td><%=s.getSDepartment()%></td>
+						<td><%=s.getSClass()%></td>
+						<td><%=s.getSEmail()%></td>
+						<td><%=s.getSIntroduction()%></td>
+						<td><%=s.getSImg()%></td>
+						<td><%=s.getSContactWay()%></td>
+						<td class="td2"><a href="servlet/StudentServlet?op=getstudent&id=<%=s.getSID()%>">修改</a>
+					    	<a href="javascript:confDel(<%=s.getSID()%>)">删除</a>
+					    	<a href="servlet/StudentServlet?op=details&id=<%=s.getSID()%>">查看详情</a>
+					    </td>
+				    </tr>
+			 </tbody>
+	    <%
+	    	}
+	    }
+	    %>
+    </table>
+    <!-- 表身显示信息部分end -->
+    
+     <!-- 显示学生信息表end -->
+     
+     <!--  -->
+    <script type="text/javascript">
+	
+	$(function(){
+		$(".lab").click(
+			function(){
+				if(this.checked)
+				 $("input:checkbox").attr("checked", "checked");  
+				else
+				 $("input:checkbox").removeAttr("checked");  
+			}
+		);
+		
+		
+		$(".ele1").mouseover(
+			function(){
+				$(this).css("background-color","#e5e5e5"); 
+			}			
+		);
+		$(".ele1").mouseout(				
+			function(){
+				$(this).css("background-color","#fff"); 
+			}
+		);
+	});
+
+	function Search1(){
+		var i=document.getElementById("sel").value;
+		var j=document.getElementById("search").value;
+		location="../../servlet/StudentServlet?op=sea&i="+i+"&j="+j;
+	}
+	
+	function confDel(id){
+	  	if(confirm("确定要删除吗？")){
+	 		location="../../servlet/StudentServlet?op=del&id="+id;
+	  	}
+  	}
+	</script>
+  </body>
+</html>

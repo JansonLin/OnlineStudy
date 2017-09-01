@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+.nav{
+		width:100%;
+		height:80px;
+		background:#000000;
+	}
+	.nav-as{
+		margin-left:80px;
+	}
+	.nav-as li{
+		list-style:none;
+		display:inline-block;
+		height:60px;
+		line-height:80px;
+		text-align:center;
+		vertical-align:middle;
+	}
+	.nav-as li a{
+		display:inline-block;
+		text-decoration:none;
+		margin-left:20px;
+		font-family:"华文隶书";
+		font-size:30px;
+		color:#CCCCCC;
+	}
+	.nav-as li a:hover{
+		background-color:#FFFFFF;
+		opacity:0.5;
+		color:#000000;
+	}
+	.nav-cs{
+		float:right;
+		margin-top:10px;}
+	.nav-cs a{
+		float:right;
+		list-style:none;
+		display:inline-block;
+		margin-right:30px;
+		
+	}
+	#logo.logo{
+	float:left;
+	height:84px;
+	width:126px;
+	margin-left:10px;
+	}
+	.sea{
+	
+		height:30px;
+		width:260px;
+	    margin-top:15px;
+		text-align:center;
+		border-radius:5px;
+	}
+	input.put{
+		
+	    display:inline-block;
+		background-color:#FFECF5;
+		width:200px;
+		height:30px;
+		line-height:30px;
+		vertical-align:middle;
+		margin-bottom:30px;
+		border-radius:10px;
+	}
+	hr{
+border:solid 1px;
+width:80%;
+float:left;
+}
+#left-frame{
+	width:30%;
+	float:left;
+	position:relative;}
+#left-frame ul{
+	margin-left:45%;
+	border-right-width:2px;
+	border-right-color:#000;
+	overflow:hidden;
+	width:100%;
+	}
+#left-frame li{
+	list-style:none;
+	font-family:"宋体";
+	font-size:22px;
+	padding:30px 50px;
+	
+	
+	}
+	#left-frame li a:hover{
+		color:#000;
+		}
+	#left-frame.out li a:hover{
+		
+		background-color:#999;
+		}
+	#left-frame li a{
+		color:#666;
+		text-decoration:none;}
+	#right-frame{
+			float:right;
+			width:70%;
+			height:1000px;
+			
+			}
+	#bea{
+		 width:100%;
+		 height:271px;
+		background:url(../images/17.jpg);
+		opacity:0.55;
+		}

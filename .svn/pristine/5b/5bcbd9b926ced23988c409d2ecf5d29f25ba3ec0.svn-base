@@ -1,0 +1,85 @@
+package action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import service.StudentService;
+
+/**
+ * Servlet implementation class studentServlet
+ */
+@WebServlet("/studentServlet")
+public class StudentServlet extends HttpServlet {
+	StudentService sService = new StudentService();
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public StudentServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String op=request.getParameter("op");
+		String sStudentID=request.getParameter("SStudentID");
+		String sPwd=request.getParameter("SPwd");
+		
+		if("add".equals(op)){
+			if(sService.add(sStudentID, sPwd)) {
+				out.print("<script>alert('添加学生信息成功！')</script>");
+				response.sendRedirect("../adminIndex.jsp");
+			}else{
+				out.print("<script>alert('添加学生信息失败，请重新添加！');history.back();</script>"); 
+			}
+		}
+		if("del".equals(op)){
+			if(sService.del(sStudentID)) {
+				out.print("<script>alert('删除学生信息成功！')</script>");
+				response.sendRedirect("../adminIndex.jsp");
+			}else{
+				out.print("<script>alert('删除学生信息失败，请检查正确后重新删除');history.back();</script>"); 
+			}
+		}
+		/*
+		if("search".equals(op)){
+			if(sService.search(sStudentID)) {
+				out.print("<script>alert('查找信息成功！')</script>");
+				response.sendRedirect("searchStudent.jsp");
+			}else{
+				out.print("<script>alert('查找学生信息失败，请检查正确后重新查找');history.back();</script>"); 
+			}
+		}
+		
+		if("modify".equals(op)){
+			if(sService.search(sStudentID)) {
+				out.print("<script>alert('修改学生信息成功')</script>");
+				response.sendRedirect("../adminIndex.jsp");
+			}else{
+				out.print("<script>alert('查找学生信息失败，请检查正确后重新查找');history.back();</script>"); 
+			}
+		}*/
+		out.flush();
+		out.close();
+	}
+
+}

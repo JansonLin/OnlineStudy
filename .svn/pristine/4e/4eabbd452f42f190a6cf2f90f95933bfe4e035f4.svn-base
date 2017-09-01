@@ -1,0 +1,155 @@
+package action;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Course;
+import filter.videoFilter;
+import service.CourseService;
+
+public class CourseServlet extends HttpServlet {
+	CourseService ccService=new CourseService();
+	String fileName;
+	String filePath;
+	String fileType;
+	String folderName;
+	String folderPath;
+	String courseName;
+	String coursePath;
+	  
+	/**
+		 * The doGet method of the servlet. <br>
+		 *
+		 * This method is called when a form has its tag value method equals to get.
+		 * 
+		 * @param request the request send by the client to the server
+		 * @param response the response send by the server to the client
+		 * @throws ServletException if an error occurred
+		 * @throws IOException if an error occurred
+		 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	/**
+		 * The doPost method of the servlet. <br>
+		 *
+		 * This method is called when a form has its tag value method equals to post.
+		 * 
+		 * @param request the request send by the client to the server
+		 * @param response the response send by the server to the client
+		 * @throws ServletException if an error occurred
+		 * @throws IOException if an error occurred
+		 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String direction=request.getParameter("direction");
+		String sort=request.getParameter("sort");
+		String type=request.getParameter("type");
+		String op=request.getParameter("op");
+		
+		if("create".equals(op)){
+			File file=getDir();
+			
+			// 获取课程ID
+			ArrayList<Course> course=new ArrayList<Course>();
+			course=ccService.getList();
+			
+			// jsp内置对象：session
+			request.getSession().setAttribute("course", course);
+			printFiles(file,1);
+		}
+		
+		if("choose".equals(op)){
+			if(ccService.createCourse(direction, sort, type)){
+				out.print("<script>alert('添加类型成功')</script>");
+				response.sendRedirect("adminIndex.jsp");
+			}else{
+				out.print("<script>alert('生成课程错误！');history.back();</script>"); 
+			}
+		}
+
+		out.flush();
+		out.close();
+	}
+	
+	public void printFiles(File file,int tab) {  
+		if(file.isDirectory()){  
+	        File next[] = file.listFiles();      //返回值是文件和文件夹，存在于数组中  
+	        for(int i=0;i<next.length;i++){  
+	            for(int j=0;j<tab;j++)          //输出|--当做识别层次的标记  
+	                System.out.print("|--");    //使用print而不是println，可以避免每次的换行  
+	            if(next[i].isFile()){
+	            	fileName=next[i].getName();
+	                filePath=next[i].getPath().replace("\\","\\\\");
+	                
+	                Pattern pattern = Pattern.compile(".(avi|flv|wmv|mov|mkv|mp4|rmvb|asf|navi|3gp|WebM|dat)$");
+               	 	Matcher matcher = pattern.matcher(filePath);
+               	 	
+	                while(matcher.find()){
+	                	System.out.println(matcher.group());
+	                	System.out.println("这是一个视频文件");
+		            	System.out.println(fileName);//打印文件或文件夹的名字 
+		                System.out.println(filePath);
+		                System.out.println(fileType);
+		                if(ccService.saveFile(fileName,filePath)){
+		                	System.out.println(courseName+"文件名保存成功"+"\n"+coursePath+"文件路径保存成功");
+		                	continue;
+		                }else
+		    				System.out.println(courseName+"文件名保存失败"+"\n"+coursePath+"文件路径保存失败");
+	                }
+	            }else{
+	            	System.out.println("这是一个文件夹");
+	            	folderName=next[i].getName();
+	            	folderPath=next[i].getPath().replace("\\","\\\\");
+	            	System.out.println(folderName);
+	            	System.out.println(folderPath);
+	            	if(ccService.saveFolder(folderName,folderPath))
+	                	System.out.println(folderName+"文件名保存成功"+"\n"+folderPath+"文件路径保存成功");
+		            	
+	    			else
+	    				System.out.println(folderName+"文件名保存失败"+"\n"+folderPath+"文件路径保存失败");
+	            	if(next[i].isDirectory())  
+	                    printFiles(next[i],tab+1);  //递归调用自身  
+	            }
+	        } 
+	    }
+	}
+	
+	public File getDir() {
+		Scanner sc=new Scanner(System.in);
+        System.out.println("请输入文件夹路径：");
+        while(true){
+        	String line = sc.nextLine();
+            File file =new File(line);
+            if(!file.exists()){
+                System.out.println("文件夹不存在，请重新输入！");
+            }else if(file.isFile()){
+                System.out.println("输入的是文件路径，请重新输入！");
+            }else{
+                courseName = file.getName();
+                coursePath = file.getPath().replace("\\","\\\\");
+                System.out.println("当前课程的名称是:"+courseName);
+                System.out.println("当前课程的地址是:"+coursePath);
+                if(ccService.saveCourse(courseName,coursePath))
+                	System.out.println(courseName+"\t课程名保存成功"+"\n"+coursePath+"\t课程路径保存成功");
+    			else
+    				System.out.println(courseName+"课程名保存失败"+"\n"+coursePath+"课程路径保存失败");
+                return file;
+            }
+        }
+    }
+}

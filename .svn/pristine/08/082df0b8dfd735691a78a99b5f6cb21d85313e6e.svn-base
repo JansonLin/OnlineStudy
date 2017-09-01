@@ -1,0 +1,78 @@
+package service;
+
+import java.util.ArrayList;
+
+import javax.servlet.jsp.jstl.sql.Result;
+
+import dao.CourseDao;
+import entity.Course;
+import entity.DirectoryLists;
+import entity.Student;
+
+public class CourseService {
+	CourseDao cDao = new CourseDao();
+	public boolean createCourse(String direction,String sort,String type){
+		String sql="insert into course(CDirection,CSort,CType) values('"+direction+"','"+sort+"','"+type+"')";
+		if(cDao.update(sql)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean saveCourse(String courseName,String coursePath){
+		String sql="insert into course(CName,CAddress) values('"+courseName+"','"+coursePath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	// 保存文件名 文件地址 课程ID 目录ID 
+	public boolean saveFile(String fileName,String filePath,int courseID,int directoryListsID){
+		String sql = "insert into videos(VCourseID,VDirectoryListsID,VName,VAddress) values('"+courseID+"','"+directoryListsID+"','"+fileName+"','"+filePath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	// 保存文件名(目录名) 所属课程ID 文件名地址
+	public boolean saveFolder(String folderName,String folderPath,int courseID){
+		String sql = "insert into directorylists(DName,DCourseID,DAddress) values('"+folderName+"','"+courseID+"','"+folderPath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	// 获取当前课程ID
+	public ArrayList<Course> getCourseID(){
+		ArrayList<Course> slist=new ArrayList<Course>();
+		String sql="SELECT CID FROM course ORDER BY CID DESC LIMIT 1";
+		Result result=cDao.getList(sql);
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0;i<data.length;i++){
+			Course c=new Course();
+			c.setCID(Integer.valueOf(data[i][0].toString()));
+			slist.add(c);		
+		}
+		return slist;
+	}
+	
+	// 获取当前文件夹ID
+	public ArrayList<DirectoryLists> getDirectoryListsID(){
+		ArrayList<DirectoryLists> slist=new ArrayList<DirectoryLists>();
+		String sql="SELECT DID FROM directorylists ORDER BY DID DESC LIMIT 1";
+		Result result=cDao.getList(sql);
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0;i<data.length;i++){
+			DirectoryLists d=new DirectoryLists();
+			d.setDID(Integer.valueOf(data[i][0].toString()));
+			slist.add(d);		
+		}
+		return slist;
+	}
+
+	
+}

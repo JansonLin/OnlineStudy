@@ -1,0 +1,33 @@
+package service;
+
+import dao.logDao;
+
+public class LogService {
+	logDao db=new logDao();
+	
+	
+	 public boolean reg(String uname,String pass){
+		   
+		   String sql="insert into xxx(uname,pass) values('"+uname+"','"+pass+"')";
+		   if(db.update(sql)>0)
+			   return true;
+		   else
+			    return false;
+		   
+	   }
+	 public boolean log(String uname,String pass){
+		   String sql="select * from xxx where uname='"+uname+"' and pass='"+pass+"'";
+		   if(db.getData(sql)>0)
+			   return true;
+		   else
+			   return false;
+	   }
+	 public boolean serchUname(String uname){
+		 String sql="select * from xxx where uname=?";
+		 if(db.getData(sql)>0)
+			   return true;
+		   else
+			   return false;
+	 }
+	 
+}

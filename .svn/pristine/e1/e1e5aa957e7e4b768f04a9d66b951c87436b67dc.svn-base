@@ -1,0 +1,47 @@
+package service;
+
+import dao.CourseDao;
+import entity.Course;
+
+public class CourseService {
+	CourseDao ccDao = new CourseDao();
+	public boolean createCourse(String direction,String sort,String type){
+		String sql="insert into course(CDirection,CSort,CType) values('"+direction+"','"+sort+"','"+type+"')";
+		if(ccDao.update(sql)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean saveCourseName(String courseName,String coursePath){
+		String sql="insert into course(CName,CAddress) values('"+courseName+"','"+coursePath+"')";
+		if(ccDao.update(sql)>0)
+			return true;
+		else
+			return false;
+		
+	}
+	
+	public boolean saveFile(String fileName,String filePath){
+		String sql = "insert into videos(VName,VAddress) values('"+fileName+"','"+filePath+"')";
+		if(ccDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean saveFolder(String folderName,String folderPath){
+		String sql = "insert into directorylists(DName,DAddress) values('"+folderName+"','"+folderPath+"')";
+		if(ccDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	public boolean getCourse(Course course){
+		String sql = "select CID from course where CName='"+course.getCName()+"'";
+		if(ccDao.getData(sql)>0){
+			return true;
+		}return false;
+	}
+}

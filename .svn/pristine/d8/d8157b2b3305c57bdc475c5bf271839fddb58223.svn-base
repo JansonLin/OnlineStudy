@@ -1,0 +1,15 @@
+package service;
+
+import dao.CourseDao;
+
+public class CourseService {
+	CourseDao ccDao = new CourseDao();
+	public boolean createCourse(String direction,String sort,String type){
+		String sql="insert into course(CDirection,CSort,CType) values('"+direction+"','"+sort+"','"+type+"')";
+		if(ccDao.update(sql)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}

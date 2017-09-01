@@ -1,0 +1,59 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="dao.FileDao" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>视频播放</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  </head>
+  
+  <body>
+	<%
+		Class.forName("com.mysql.jdbc.Driver").newInstance();  
+    	String url="jdbc:mysql://localhost:3306/onlinestudy";  
+    	String user="root";  
+    	String password="root";  
+    	Connection conn = DriverManager.getConnection(url, user, password);  
+    	Statement st = conn.createStatement();  		
+	 %>
+	 <table >  
+  <tr>  
+    <td width="174" id="title">ID</td>  
+    <td width="449" id="title">名称</td>  
+    <td width="161" id="title">地址</td>  
+  </tr>  
+  <%  
+    ResultSet rs = st.executeQuery("SELECT * FROM videos");  
+    while(rs.next()){
+   %>
+   <tr>  
+    <td width="174" ><%=rs.getString("VID") %></td>  
+    <td width="449" ><%=rs.getString("VName") %></td>  
+    <td width="161"><a href="VideoPaly.jsp?id=<%=rs.getString("VAddress") %>"><%=rs.getString("VAddress") %></a></td>
+  </tr>  
+  <%}  %>  
+ </table>  
+  
+	<%  
+    	rs.close();  
+    	conn.close();  
+ 	%>    
+  </body>
+</html>

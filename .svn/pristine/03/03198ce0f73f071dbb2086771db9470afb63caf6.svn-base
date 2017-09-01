@@ -1,0 +1,69 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8 "%>
+<%@ page import="file.FileOperation" %>
+<%@ page import="java.io.File"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>生成课程</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  </head>
+  
+  <body>
+	<p>请选择课程的类型</p>
+	<form action="">
+		<h3>方向</h3>
+		<select>
+  			<option value="">前端开发</option>
+  			<option value="">后端开发</option>
+  			<option value="">移动开发</option>
+  			<option value="">数据库</option>
+  			<option value="">云计算&大数据</option>
+  			<option value="">运维&测试</option>
+  			<option value="">UI设计</option>
+		</select>
+		<h3>分类</h3>
+		<select>
+  			<option value="">HTML/CSS</option>
+  			<option value="">后端开发</option>
+  			<option value="">javaScript</option>
+  			<option value="">数据库</option>
+  			<option value="">云计算&大数据</option>
+  			<option value="">运维&测试</option>
+  			<option value="">UI设计</option>
+		</select>
+		<h3>类型</h3>
+		<select>
+  			<option value="volvo">基础</option>
+  			<option value="saab">案例</option>
+  			<option value="opel">框架</option>
+  			<option value="audi">工具</option>
+		</select>
+		<input type="submit" value="生成课程">
+		<p>请在控制台输入课程的地址</p>
+		<%
+			FileOperation fo = new FileOperation();
+			File file=fo.getDir();
+			fo.printFiles(file, 1);
+		 %>
+	</form>
+	
+	
+  </body>
+</html>

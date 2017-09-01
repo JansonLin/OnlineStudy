@@ -1,0 +1,38 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PU BLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>My JSP 'texteara.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ueditor/zh-cn.js"></script>
+</head>
+
+<body>
+	<div data-options="region:'center',title:'内容'">
+		<textarea id="content" wrap="soft" style="width:95%;height:90%;"></textarea>
+		<script typle="text/javascript" charset="UTF-8">
+			UE.getEditor('content');
+		</script>
+	</div>
+
+</body>
+</html>

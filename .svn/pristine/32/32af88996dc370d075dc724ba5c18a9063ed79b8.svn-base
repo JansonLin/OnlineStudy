@@ -1,0 +1,26 @@
+package service;
+
+import java.util.ArrayList;
+
+import javax.servlet.jsp.jstl.sql.Result;
+
+import dao.fileDao;
+import entity.formatVideo;
+
+
+public class fileService {
+	fileDao fd = new fileDao();
+	public ArrayList<formatVideo> getList(){
+		ArrayList<formatVideo> Afv=new ArrayList<formatVideo>();
+		String sql="select * from formatvideo";
+		Result result=fd.getList(sql);
+		// Object
+		Object[] data=result.getRowsByIndex();
+		for(int i=0; i<data.length; i++){
+			formatVideo fv = new formatVideo();
+			fv.setFName(data[i].toString());
+			Afv.add(fv);
+		}
+		return Afv;
+	}
+}

@@ -1,0 +1,131 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>在线学习平台</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link href="css/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body> 
+<div id="mmm">
+ <div class="nav">
+       <div id="logo" class="logo"><a href="index.jsp" target="_self" title="首页"><img src="images/20.jpg"></a></div>
+
+		 <ul class="nav-as">
+			<li><a href="allCourse.jsp">课程</a></li>
+			<li><a href="grade.jsp">年级</a></li>
+			<li>
+			  <div class="sea">
+			    <span class="sea1">
+			    <input class="put" name="text" type="text" placeholder="search" id="search"/>
+			    </span>
+			    <input type="button" id="btn1" style="background:url(images/btn.png)"/>				      
+			  </div>
+			</li>
+		
+		   <div class="nav-cs">
+			 <li><a href="log.jsp">登录</a></li>
+			 <li><a href="reg.jsp">注册</a></li>
+		   </div>
+        </ul>
+  </div>
+  <div class="main">
+	 <div class="box">
+	  	 <ul class="box-as">
+			<li><label class="box-es"><a href="#">前端开发</a><font>&gt
+			</font></label>
+				
+					<ul class="box-ul" style="background:url(images/16.jpg);">
+						<li>基础：<a href="">html/css</a>/<a href="">javaScript</a>/<a href="">jQuery</a>/</li>
+						<li>进阶：<a href="#">html5</a>/<a href="">CSS</a>/<a href="">Node.js</a>/<a href="">Ajax</a>
+						/<a href="">Vue.js</a>/</li>
+						<li>其他：<a href="#">前端工具</a></li>
+					</ul>
+				
+			</li>
+		
+		  <li class="box-pos"><label class="box-es"><a href="#">后端开发</a><font>&gt
+		  </font></label>
+		       	<ul class="box-ul" style="background:url(images/15.jpg);">
+						<li>基础：<a href="">Java</a>/<a href="">PHP</a>/<a href="">Python</a>/<a href="">C</a>/<a href="">C++</a>/<a href="">C#</a>/<a href="">Ruby</a>/</li>
+				</ul>
+		  </li>
+		  
+		   <li class="box-pos"><label class="box-es"><a href="#">移动开发</a><font>&gt
+		   </font></label>
+		       	<ul class="box-ul" style="background:url(images/14.jpg);">
+						<li>基础：<a href="">Android</a>/<a href="">ios</a>/</li>
+				</ul>
+		  </li>
+		  
+		   <li class="box-pos"><label class="box-es"><a href="#">数据库</a><font>&gt
+		   </font></label>
+		       	<ul class="box-ul" style="background:url(images/13.jpg);">
+						<li>基础：<a href="#">MySQL</a>/<a href="">SQL Server</a>/</li>
+				</ul>
+		  </li>
+		  
+		   <li class="box-pos"><label class="box-es"><a href="#">云计算&大数据
+		   </a><font>&gt
+		   </font></label>
+		       	<ul class="box-ul" style="background:url(images/12.jpg);">
+							<li>基础：<a href="#">大数据</a>/<a href="">云计算</a>/</li>
+				</ul>
+		  </li>
+		   <li class="box-pos"><label class="box-es"><a href="#">运维&测试
+		   </a><font>&gt
+		   </font></label>
+		   		<ul class="box-ul" style="background:url(images/11.jpg);">
+					<li>基础：<a href="#">测试</a>/<a href="">Linux</a>/</li>
+				</ul>
+		   </li>
+		   
+ <li class="box-pos"><label class="box-es"><a href="#">UI设计</a><font>&gt
+ </font></label>
+		   		<ul class="box-ul" style="background:url(images/10.jpg);">
+						<li>基础：<a href="#">动画动效</a>/<a href="">APPUI设计</a>/</li>
+				</ul>
+		   </li>
+		  
+	  	 </ul>
+	</div>
+ </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" href="css/app.css">
+<div class="slider">
+
+	<div class="slider-img">
+		<ul class="slider-img-ul">
+			<li><img src="images/24.jpg"></li>
+			<li><img src="images/25.jpg"></li>
+			<li><img src="images/23.jpg"></li>
+			<li><img src="images/26.jpg"></li>
+			<li><img src="images/27.jpg"></li>
+			<li><img src="images/28.jpg"></li>
+			<li><img src="images/29.jpg"></li>
+		</ul>
+	</div>
+
+</div>
+<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/xSlider.js"></script>
+  </body>
+</html>

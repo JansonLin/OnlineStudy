@@ -1,0 +1,96 @@
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+}
+	.container{
+		width:100%;
+	}
+	.vio{
+		text-align:center;
+		height:600px;
+		width:80%;
+	}
+	.play{
+ 		height:600px;
+		width:80%;
+	}
+	.text{
+		display:none;
+		width:68px;
+		height:80px;
+		margin-top:-340px;
+		margin-left:908px;
+		background-color:#CCCCCC;
+		opacity:0.5;
+		position:absolute;
+		z-index:1;
+	}
+	.vio:hover .text{
+		display:block;
+		cursor:pointer;
+	}
+	.vio:hover #btn1{
+		
+		cursor:pointer;
+	}
+	.vio:hover #btn2{
+		
+		cursor:pointer;
+	}
+	
+	#text2{
+		display:none;
+		width:300px;
+		height:1000px;
+		}
+	#text1{
+		display:inline-block;
+		width:300px;
+		height:800px;
+		margin-left:1000px;
+		margin-top:-300px;
+		background-color:#CFD18D;
+	}
+	#btn1,#btn2{
+		border:none;
+		height:45px;
+		line-height:45px;
+		width:68px;
+	}
+	#btn2{
+		margin-left:1250px;
+		margin-top:-60px;
+		}
+	span{
+		height:40px;
+		}
+	hr{
+		border:solid 1px;
+		width:60%;
+		margin-bottom:20px;
+	}
+	#text3{
+		display:block;
+		margin-left:40px;
+		width:80%;
+		height:300px;
+		float:left;
+		margin-left:40px;
+		background-color:#CFD18D;
+	}
+	.note{
+		margin-top: 20px;
+		position: absolute;
+	}
+	a{
+		text-decoration:none;
+		float:right;
+		font-family:"STLiti";
+		font-size:28px;
+	}
+	textarea{
+		font-size:22px;
+		font-family:STSong;
+	}

@@ -1,0 +1,105 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="entity.Sort" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<%
+	ArrayList<Sort> sort=(ArrayList<Sort>)session.getAttribute("sort");
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>分类栏设置</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  </head>
+  
+  <body>
+	<div class="nav"><span class="icon-font"></span><span>标签栏管理</span><span>&gt</span><span>分类栏列表</span></div>
+	
+	<form method="post" action="../../servlet/TabBarsServlet?op=addSort">
+		添加新分类<input type="text" name="addSort" id="addSort"  /><input type="submit" value="添加" />
+	</form>
+	
+	<table>
+    	<tr class="tab_title"><td><input type="checkbox" name="first" id="sel" class="lab"/></td>
+	    	<td>ID</td>
+	    	<td>分类名</td>
+	    	<td>操作</td>
+	    </tr>
+	    
+		<%
+			if(null==sort)
+				response.sendRedirect("../../servlet/TabBarsServlet?op=sortList");
+			else{
+				for(int i=0;i<sort.size();i++){
+					Sort s=sort.get(i);
+		%>
+					<tr class="ele1">
+						<td><input type="checkbox" name="first"/></td>
+						<td><%=s.getSort_ID() %></td>
+						<td><%=s.getSort_Name() %></td>
+						<td>
+							<a href="servlet/TabBarsServlet?op=addSort&id=<%=s.getSort_ID()%>">添加</a>
+							<a href="servlet/TabBarsServlet?op=getSort&id=<%=s.getSort_Name()%>">修改</a>
+					    	<a href="javascript:confDel(<%=s.getSort_ID()%>)">删除</a>
+					    </td>
+				    </tr>
+	    <%
+	    	}
+	    }
+	    %>
+    </table>
+    
+    <script type="text/javascript">
+	
+	$(function(){
+		$(".lab").click(
+			function(){
+				if(this.checked)
+				 $("input:checkbox").attr("checked", "checked");  
+				else
+				 $("input:checkbox").removeAttr("checked");  
+			}
+		);
+		
+		
+		$(".ele1").mouseover(
+			function(){
+				$(this).css("background-color","#e5e5e5"); 
+			}			
+		);
+		$(".ele1").mouseout(				
+			function(){
+				$(this).css("background-color","#fff"); 
+			}
+		);
+	});
+
+	function Search1(){
+		var i=document.getElementById("sel").value;
+		var j=document.getElementById("search").value;
+		location="servlet/TabBarsServlet?op=sea&i="+i+"&j="+j;
+	}
+	
+	function confDel(id){
+	  	if(confirm("确定要删除吗？")){
+	 		location="servlet/TabBarsServlet?op=del&id="+id;
+	  	}
+  	}
+	</script>
+  </body>
+</html>

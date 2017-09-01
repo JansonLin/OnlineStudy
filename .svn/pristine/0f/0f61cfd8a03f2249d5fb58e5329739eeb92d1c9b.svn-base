@@ -1,0 +1,62 @@
+package service;
+
+import java.util.ArrayList;
+
+import javax.servlet.jsp.jstl.sql.Result;
+
+import dao.CourseListDao;
+import entity.Direction;
+import entity.DirectoryLists;
+import entity.Sort;
+import entity.Type;
+
+public class CourseListService {
+	CourseListDao clDao=new CourseListDao();
+	
+	// 获取方向 direction
+	public ArrayList<Direction> getDirectoryListsID(){
+		ArrayList<Direction> slist=new ArrayList<Direction>();
+		String sql="SELECT * FROM direction";
+		Result result=clDao.getList(sql);
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0;i<data.length;i++){
+			Direction d=new Direction();
+			d.setDir_ID(Integer.valueOf(data[i][0].toString()));
+			d.setDir_Name(data[i][1].toString());
+			slist.add(d);		
+		}
+		return slist;
+	}
+	
+	// 获取分类 Sort
+		public ArrayList<Sort> getSortID(){
+			ArrayList<Sort> slist=new ArrayList<Sort>();
+			String sql="SELECT * FROM sort";
+			Result result=clDao.getList(sql);
+			Object[][] data=result.getRowsByIndex();
+			for(int i=0;i<data.length;i++){
+				Sort s=new Sort();
+				s.setSort_ID(Integer.valueOf(data[i][0].toString()));
+				s.setSort_Name(data[i][1].toString());
+				s.setSort_State(data[i][2].toString());
+				slist.add(s);		
+			}
+			return slist;
+		}
+		
+		// 获取方向 direction
+		public ArrayList<Type> getTypeID(){
+			ArrayList<Type> slist=new ArrayList<Type>();
+			String sql="SELECT * FROM type";
+			Result result=clDao.getList(sql);
+			Object[][] data=result.getRowsByIndex();
+			for(int i=0;i<data.length;i++){
+				Type t=new Type();
+				t.setType_ID(Integer.valueOf(data[i][0].toString()));
+				t.setType_Name(data[i][1].toString());
+				t.setType_State(data[i][2].toString());
+				slist.add(t);		
+			}
+			return slist;
+		}
+}

@@ -1,0 +1,34 @@
+table{
+	margin-top:5px;
+	background-color:#fff;
+}
+.searchBtn{
+	width:150px;
+	margin-right:280px;
+	height:30px;
+	margin-top:12px;
+}
+.tab_title{
+	height:40px;
+	background-color:#f2f2f2;
+	border:1px solid #e5e5e5;
+	border-collpase:collpase;
+	font-size:18px;
+	text-align:center;
+	font-weight:bolder;
+}
+
+.searchPanel{
+	height:50px;
+	width:100%;
+	padding-left:60px;
+	border:1px solid #f2f2f2;
+	line-height:50px;
+	margin:5px 25px 5px 0px;
+	
+}
+.inputSearch{
+	width:600px;
+	margin:0 auto;
+}
+

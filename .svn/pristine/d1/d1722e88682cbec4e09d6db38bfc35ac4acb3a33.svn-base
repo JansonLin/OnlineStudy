@@ -1,0 +1,76 @@
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+}
+	.container{
+		width:100%;
+	}
+	.vio{
+		text-align:center;
+		height:600px;
+		width:80%;
+	}
+	.play{
+ 		height:600px;
+		width:80%;
+	}
+	.text{
+		display:none;
+		width:68px;
+		height:80px;
+		margin-top:-340px;
+		margin-left:908px;
+		background-color:#CCCCCC;
+		opacity:0.5;
+		position:absolute;
+		z-index:1;
+	}
+	.vio:hover .text{
+		display:block;
+		cursor:pointer;
+	}
+	
+	#text2{
+		display:none;
+		width:300px;
+		height:1000px;
+		}
+	#text1{
+		display:inline-block;
+		width:300px;
+		height:800px;
+		margin-left:1000px;
+		margin-top:-300px;
+		background-color:#CFD18D;
+	}
+	#btn1,#btn2{
+		border:none;
+		height:45px;
+		line-height:45px;
+		width:60px;
+	}
+	#btn2{
+		margin-left:1250px;
+		margin-top:-60px;
+		}
+		span{
+		height:40px;
+		}
+		
+		
+		hr{
+		border:solid 1px;
+		width:60%;
+		margin-bottom:40px;
+	}
+	#con{
+	    top:20px;
+		margin-left:60px;
+		border:none;
+		height:1000px;
+      }
+	  .content_container{
+	  	overflow:auto;
+	  }

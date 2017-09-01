@@ -1,0 +1,54 @@
+package action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.logDao;
+
+import entity.student;
+
+import service.LogService;
+
+public class RegServlet extends HttpServlet {
+LogService lservice=new LogService();
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		 doPost(request, response);
+	}
+
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		 LogService lservice=new LogService();
+	       logDao bd=new logDao();
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		String op=request.getParameter("op");
+		String uname=request.getParameter("uname");
+		String pass=request.getParameter("pass");
+		String confirmpass=request.getParameter("confirmpass");
+		 if("reg".equals(op)){
+		    	
+				if(lservice.reg(uname, pass)){ //结果跳转   向数据库中插入数据
+					
+			    	response.sendRedirect("../log.jsp");
+				}else {
+					out.print("<script>alert('注册失败,请联系管理员！');history.back();</script>");
+				}
+		    }
+		
+		out.flush();
+		out.close();
+	}
+
+  }
+

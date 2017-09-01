@@ -1,0 +1,22 @@
+package service;
+
+import dao.StudentDao;
+
+public class StudentService {
+	StudentDao sDao = new StudentDao();
+	public boolean add(String SStudentID,String SPwd){
+		String sql="insert into student(SStudentID,SPwd) values('"+SStudentID+"','"+SPwd+"')";
+		if(sDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	   }
+	
+	public boolean del(String SStudentID){
+		String sql="delete from student where SStudentID="+SStudentID;
+		if(sDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	   }
+}

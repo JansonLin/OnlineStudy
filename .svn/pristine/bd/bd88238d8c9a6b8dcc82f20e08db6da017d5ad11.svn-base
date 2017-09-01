@@ -1,0 +1,88 @@
+package action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Direction;
+import entity.Sort;
+import entity.Student;
+import entity.Type;
+import service.TabBarsService;
+
+/**
+ * Servlet implementation class TabBarsServlet
+ */
+@WebServlet("/TabBarsServlet")
+public class TabBarsServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TabBarsServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String op=request.getParameter("op");
+		
+		TabBarsService tbService=new TabBarsService();
+		
+		if("directionList".equals(op)){
+			ArrayList<Direction> direction=new ArrayList<Direction>();
+			direction=tbService.getDirectionList();
+			request.getSession().setAttribute("direction", direction);
+			response.sendRedirect("../admin/TabBarsManagement/directionOperation.jsp");
+		}
+		
+		if("sortList".equals(op)){
+			ArrayList<Sort> sort=new ArrayList<Sort>();
+			sort=tbService.getSortList();
+			request.getSession().setAttribute("sort", sort);
+			response.sendRedirect("../admin/TabBarsManagement/sortOperation.jsp");
+		}
+		
+		if("typeList".equals(op)){
+			ArrayList<Type> type=new ArrayList<Type>();
+			type=tbService.getTypeList();
+			request.getSession().setAttribute("type", type);
+			response.sendRedirect("../admin/TabBarsManagement/typeOperation.jsp");
+		}
+		
+		if("addDirection".equals(op)){
+			Direction d=new Direction();
+			
+			if(tbService.addDirection(d)) {
+				response.sendRedirect("../admin/TabBarsManagement/directionOperation.jsp");
+			}else{
+				out.print("<script>alert('添加出错，请重新添加');history.back();</script>"); 
+			}
+		}
+		
+		out.flush();
+		out.close();
+	}
+
+}

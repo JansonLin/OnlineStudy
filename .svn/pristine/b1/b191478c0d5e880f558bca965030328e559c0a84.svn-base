@@ -1,0 +1,106 @@
+package service;
+
+import java.util.ArrayList;
+
+import javax.servlet.jsp.jstl.sql.Result;
+
+import dao.CourseDao;
+import entity.Course;
+import entity.Direction;
+import entity.DirectoryLists;
+import entity.Sort;
+import entity.Student;
+import entity.CourseAndVideos;
+import entity.Type;
+
+public class CourseService {
+	CourseDao cDao = new CourseDao();
+	public boolean createCourse(String direction,String sort,String type){
+		String sql="insert into course(CDirection,CSort,CType) values('"+direction+"','"+sort+"','"+type+"')";
+		if(cDao.update(sql)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public ArrayList<CourseAndVideos> getFileName(Course course){
+		ArrayList<CourseAndVideos> clist = new ArrayList<CourseAndVideos>();
+		String sql = "select CAddress,VName from course,videos where CName like '%"+course.getCName()+"%' and course.identify=videos.identify";
+		Result result = cDao.getList(sql);
+		Object[][] data = result.getRowsByIndex();
+		for (int i = 0; i < data.length; i++) {
+			CourseAndVideos cv = new CourseAndVideos();
+			cv.setCAddress(data[i][0].toString());
+			cv.setVName(data[i][1].toString());
+			clist.add(cv);
+		}
+		return clist;
+	}
+	public boolean saveCourse(String courseName,String coursePath){
+		String sql="insert into course(CName,CAddress) values('"+courseName+"','"+coursePath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean saveFile(String fileName,String filePath){
+		String sql = "insert into videos(VName,VAddress) values('"+fileName+"','"+filePath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean saveFolder(String folderName,String folderPath){
+		String sql = "insert into directorylists(DName,DAddress) values('"+folderName+"','"+folderPath+"')";
+		if(cDao.update(sql)>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public ArrayList<Course> getCourseID(){
+		ArrayList<Course> course=new ArrayList<Course>();
+		String sql="SELECT * FROM course ORDER BY CID DESC LIMIT 1";
+		Result result=cDao.getList(sql);
+		// Object
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0; i<data.length; i++){
+			Course c = new Course();
+			c.setCID(Integer.parseInt(data[i][0].toString()));
+			course.add(c);
+		}
+		return course;
+	}
+	
+	// 获取当前文件夹ID
+	public ArrayList<DirectoryLists> getDirectoryListsID(){
+		ArrayList<DirectoryLists> slist=new ArrayList<DirectoryLists>();
+		String sql="SELECT DID FROM directorylists ORDER BY DID DESC LIMIT 1";
+		Result result=cDao.getList(sql);
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0;i<data.length;i++){
+			DirectoryLists d=new DirectoryLists();
+			d.setDID(Integer.valueOf(data[i][0].toString()));
+			slist.add(d);		
+		}
+		return slist;
+	}
+
+	// 获取方向  以便列举出来
+	public ArrayList<Direction> getDirection(){
+		ArrayList<Direction> slist=new ArrayList<Direction>();
+		String sql="SELECT * FROM direction";
+		Result result=cDao.getList(sql);
+		Object[][] data=result.getRowsByIndex();
+		for(int i=0;i<data.length;i++){
+			Direction d=new Direction();
+			d.setDir_ID(Integer.valueOf(data[i][0].toString()));
+			d.setDir_Name(data[i][1].toString());
+			slist.add(d);		
+		}
+		return slist;
+	}
+	
+}
