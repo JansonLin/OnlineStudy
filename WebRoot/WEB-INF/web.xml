@@ -28,7 +28,6 @@
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>action.IndexServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>AdminLogServlet</servlet-name>
     <url-pattern>/servlet/AdminLogServlet</url-pattern>
@@ -58,13 +57,16 @@
     <url-pattern>/servlet/IndexServlet</url-pattern>
   </servlet-mapping>
   
-  
   <filter>
-    <filter-name>EncodingFilter</filter-name>
-    <filter-class>filter.EncodingFilter</filter-class>
+  	<filter-name>EncodingFilter</filter-name>			 	<!--过滤器名称-->
+  	<filter-class>filter.EncodingFilter</filter-class>		<!--过滤器的完整类名-->  
+  	<init-param> <!--初始化参数-->  
+  		<param-name>encoding</param-name>	<!--参数名称--> 
+  		<param-value>UTF-8</param-value>	<!--参数值-->  
+  	</init-param>
   </filter>
-  <filter-mapping>
-    <filter-name>EncodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+  <filter-mapping>	<!--过滤器映射--> 
+  	<filter-name>EncodingFilter</filter-name>	<!--过滤器名称-->   
+  	<url-pattern>/*</url-pattern>				<!--URL映射，给所有页面处理乱码--> 
   </filter-mapping>
 </web-app>

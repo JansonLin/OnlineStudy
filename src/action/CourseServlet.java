@@ -84,6 +84,10 @@ public class CourseServlet extends HttpServlet {
 		type=request.getParameter("type");
 		grade=request.getParameter("grade");
 		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		
 		// 获取当前课程ID
 		if("list".equals(op)){
 			ArrayList<Course> slist=new ArrayList<Course>();

@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td><%=c.getCContent() %></td>
 						<td class="td2"><a href="javascript:modify(<%=c.getCID()%>)">修改</a>
 					    	<a href="javascript:confDel(<%=c.getCID()%>)">删除</a>
-					    	<a href="servlet/StudentServlet?op=details&id=<%=c.getCID()%>">查看详情</a>
+					    	<a href="servlet/CourseServlet?op=details&id=<%=c.getCID()%>">查看详情</a>
 					    </td>
 				    </tr>
 			 </tbody>
